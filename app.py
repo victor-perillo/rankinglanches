@@ -275,7 +275,7 @@ if botao_clicado:
 # 5. Rodapé Informativo
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 26/03/2026<br>
+        Atualizado em 30/03/2026<br>
         <strong>Final da promoção: 31/03/2026</strong>
     </div>
 """, unsafe_allow_html=True)
