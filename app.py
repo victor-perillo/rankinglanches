@@ -21,19 +21,24 @@ st.markdown("""
         max-width: 450px;
     }
     
+    /* Padronização dos Botões */
     .stButton>button {
         background-color: #8A05BE;
         color: white;
         border-radius: 12px;
         width: 100%;
-        padding: 10px;
+        height: 45px;
+        padding: 0px;
         font-weight: bold;
         border: none;
         transition: 0.3s ease;
+        font-size: 14px;
+        margin-top: 5px;
     }
     .stButton>button:hover {
         background-color: #700499;
         color: white;
+        border: none;
     }
     
     .resultado-card {
@@ -70,7 +75,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Banco de Dados (Ranking Consolidado)
+# 3. Banco de Dados (Corrigido e Completo)
 ranking_db = [
     {'posicao': 1, 'nome': 'WALDEMAR FAUSTINO DE SOUZA FILHO', 'cpf': '***.457.518-**'},
     {'posicao': 2, 'nome': 'ARIANA OMURA VIEIRA', 'cpf': '***.092.708-**'},
@@ -243,46 +248,30 @@ ranking_db = [
     {'posicao': 169, 'nome': 'SANDRA MARIA DE SOUSA SALINAS', 'cpf': '***.148.401-**'}
 ]
 
-# 4. Construção da Interface
+# 4. Interface
 col1, col2, col3 = st.columns([1, 3, 1])
 with col2:
     try:
-        # Se você tiver a logo.jpg, ele exibe. Se não, exibe o texto abaixo.
         st.image("logo.jpg", use_container_width=True)
     except:
-        st.markdown("<h1 style='text-align: center;'>🍔 Promoção</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center;'>🍔 Lanches</h1>", unsafe_allow_html=True)
 
-st.markdown("<h2 style='text-align: center; color: #333; margin-bottom: 25px;'>Consulta de Ranking</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #333;'>Consulta de Ranking</h2>", unsafe_allow_html=True)
 
-# Campo de texto
+# Input de busca
 nome_busca = st.text_input("", placeholder="Insira seu nome completo...")
 
-# Botões de Ação
-c1, c2, c3 = st.columns([1, 2, 1])
-with c2:
-    col_btn_a, col_btn_b = st.columns(2)
-    with col_btn_a:
-        botao_busca = st.button("Buscar")
-    with col_btn_b:
-        botao_resultados = st.button("Ganhadores")
+# Linha de botões padronizada
+c_btn1, c_btn2, c_btn3 = st.columns(3)
 
-# --- LÓGICA 1: BOTÃO GANHADORES (1º e 2º) ---
-if botao_resultados:
-    st.markdown("### 🏆 Top 2 Liderança")
-    vencedores = [u for u in ranking_db if u['posicao'] in [1, 2]]
-    for v in vencedores:
-        cor = "#FFD700" if v['posicao'] == 1 else "#C0C0C0"
-        medalha = "🥇" if v['posicao'] == 1 else "🥈"
-        st.markdown(f"""
-            <div class="resultado-card" style="border-left: 8px solid {cor};">
-                <div class="podio-label" style="color: {cor};">{medalha} {v['posicao']}º LUGAR</div>
-                <p style="margin: 0; font-size: 18px;"><strong>{v['nome']}</strong></p>
-                <p style="margin: 0; color: #666; font-size: 14px;">CPF: {v['cpf']}</p>
-            </div>
-        """, unsafe_allow_html=True)
-    st.markdown("---")
+with c_btn1:
+    botao_busca = st.button("Buscar")
+with c_btn2:
+    botao_ganhadores = st.button("Ganhadores")
+with c_btn3:
+    botao_video = st.button("Vídeo Sorteio")
 
-# --- LÓGICA 2: BUSCA INDIVIDUAL ---
+# --- LÓGICA 1: BUSCA ---
 if botao_busca:
     if not nome_busca:
         st.warning("Por favor, digite um nome.")
@@ -294,16 +283,53 @@ if botao_busca:
                     <div class="resultado-card">
                         <p style="margin: 0;">Nome: <strong style="color: #333;">{p['nome']}</strong></p>
                         <p style="margin: 5px 0;">CPF: <strong>{p['cpf']}</strong></p>
-                        <p style="margin: 10px 0 0 0;">Sua Posição: <span class="destaque">{p['posicao']}º lugar</span></p>
+                        <p style="margin: 10px 0 0 0;">Posição: <span class="destaque">{p['posicao']}º lugar</span></p>
                     </div>
                 """, unsafe_allow_html=True)
         else:
-            st.error("Nome não encontrado no ranking.")
+            st.error("Nome não encontrado.")
 
-# 5. Rodapé Informativo
+# --- LÓGICA 2: GANHADORES (Ranking + Sorteio) ---
+if botao_ganhadores:
+    st.markdown("### 🏆 Vencedores da Campanha")
+    
+    # Ranking fixo
+    vencedores_ranking = [u for u in ranking_db if u['posicao'] in [1, 2]]
+    for v in vencedores_ranking:
+        cor = "#FFD700" if v['posicao'] == 1 else "#C0C0C0"
+        medalha = "🥇" if v['posicao'] == 1 else "🥈"
+        st.markdown(f"""
+            <div class="resultado-card" style="border-left: 8px solid {cor};">
+                <div class="podio-label" style="color: {cor};">{medalha} {v['posicao']}º LUGAR RANKING</div>
+                <p style="margin: 0; font-size: 18px;"><strong>{v['nome']}</strong></p>
+                <p style="margin: 0; color: #666; font-size: 14px;">CPF: {v['cpf']}</p>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    # Ganhador do Sorteio
+    st.markdown(f"""
+        <div class="resultado-card" style="border-left: 8px solid #8A05BE; background-color: #f9f0ff;">
+            <div class="podio-label" style="color: #8A05BE;">🎁 GANHADOR DO SORTEIO</div>
+            <p style="margin: 0; font-size: 18px;"><strong>MICHAEL MARQUES VIEIRA DE SOUZA</strong></p>
+            <p style="margin: 0; color: #666; font-size: 14px;">CPF: ***.340.948-**</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+# --- LÓGICA 3: VÍDEO DO SORTEIO ---
+if botao_video:
+    st.markdown("### 🎬 Vídeo do Sorteio")
+    # Substitua o link abaixo pelo link do seu vídeo (YouTube ou arquivo local)
+    # Se for arquivo local na mesma pasta: st.video("video.mp4")
+    try:
+        st.video("https://www.youtube.com/watch?v=dQw4w9WgXcQ") 
+        st.info("Assista acima ao registro oficial do sorteio.")
+    except:
+        st.error("Vídeo não disponível no momento.")
+
+# 5. Rodapé
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 30/03/2026<br>
-        <strong>Final da promoção: 31/03/2026</strong>
+        Atualizado em 31/03/2026<br>
+        <strong>Promoção Finalizada</strong>
     </div>
 """, unsafe_allow_html=True)
