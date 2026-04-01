@@ -321,7 +321,7 @@ if botao_video:
     # Substitua o link abaixo pelo link do seu vídeo (YouTube ou arquivo local)
     # Se for arquivo local na mesma pasta: st.video("video.mp4")
     try:
-        st.video("https://www.youtube.com/watch?v=dQw4w9WgXcQ") 
+        st.video("sorteio.mp4.mp4") 
         st.info("Assista acima ao registro oficial do sorteio.")
     except:
         st.error("Vídeo não disponível no momento.")
