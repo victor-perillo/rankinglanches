@@ -1,6 +1,6 @@
 import streamlit as st
 
-# 1. Configuração da página para Mobile e Desktop
+# 1. Configuração da página
 st.set_page_config(
     page_title="Consulta de Ranking", 
     page_icon="🍔", 
@@ -8,28 +8,25 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Estilização Customizada (CSS) - Design Moderno e Responsivo
+# 2. Estilização Customizada (CSS)
 st.markdown("""
     <style>
-    /* Esconde elementos padrão do Streamlit */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
-    /* Container principal ajustado para telas de celular */
     .block-container {
         padding-top: 1rem;
         padding-bottom: 2rem;
         max-width: 450px;
     }
     
-    /* Estilo do Botão Roxo (Estilo Nu) */
     .stButton>button {
         background-color: #8A05BE;
         color: white;
         border-radius: 12px;
         width: 100%;
-        padding: 12px;
+        padding: 10px;
         font-weight: bold;
         border: none;
         transition: 0.3s ease;
@@ -37,24 +34,29 @@ st.markdown("""
     .stButton>button:hover {
         background-color: #700499;
         color: white;
-        transform: translateY(-2px);
     }
     
-    /* Estilo dos cards de resultado */
     .resultado-card {
         background-color: #ffffff;
-        padding: 20px;
+        padding: 15px;
         border-radius: 15px;
         border: 1px solid #e0e0e0;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         color: #333;
     }
     
     .destaque {
         color: #8A05BE;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+    .podio-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 2px;
     }
 
     .footer-text {
@@ -68,11 +70,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Banco de Dados Completo (Ranking Consolidado: 01/03 a 19/03)
-# Atualizado com base no extrato CSV processado.
-# 3. Banco de Dados Completo (Ranking Consolidado: 01/03 a 23/03)
-# Removidos: Familiares conforme solicitado.
-# Total de registros: 97
+# 3. Banco de Dados (Ranking Consolidado)
 ranking_db = [
     {'posicao': 1, 'nome': 'WALDEMAR FAUSTINO DE SOUZA FILHO', 'cpf': '***.457.518-**'},
     {'posicao': 2, 'nome': 'ARIANA OMURA VIEIRA', 'cpf': '***.092.708-**'},
@@ -241,28 +239,51 @@ ranking_db = [
     {'posicao': 165, 'nome': 'FABIO LUIZ PASCHOAL', 'cpf': '***.545.228-**'},
     {'posicao': 166, 'nome': 'LARISSA SOARES DA SILVA', 'cpf': '***.576.408-**'},
     {'posicao': 167, 'nome': 'PEDRO SILVA MARTINS', 'cpf': '***.245.268-**'},
-    {'posicao': 168, 'nome': 'SABRINA SANT ANA DA SILVA ALVES', 'cpf': '***.844.038-**'},
+    {'posicao': 168, 'nome': 'SABRINA SANT ANA DA SILVA ALVES', '***.844.038-**'},
     {'posicao': 169, 'nome': 'SANDRA MARIA DE SOUSA SALINAS', 'cpf': '***.148.401-**'}
+]
+
 # 4. Construção da Interface
 col1, col2, col3 = st.columns([1, 3, 1])
 with col2:
     try:
         st.image("logo.jpg", use_container_width=True)
     except:
-        st.error("Imagem 'logo.jpg' não encontrada na pasta.")
+        st.info("Logo da Promoção")
 
-st.markdown("<h2 style='text-align: center; color: #333; margin-bottom: 25px;'>Confira sua posição</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #333; margin-bottom: 25px;'>Consulta de Ranking</h2>", unsafe_allow_html=True)
 
 # Campo de texto
 nome_busca = st.text_input("", placeholder="Insira seu nome completo...")
 
-# Centralização do Botão usando colunas
+# Botões de Ação
 c1, c2, c3 = st.columns([1, 2, 1])
 with c2:
-    botao_clicado = st.button("Buscar no Ranking")
+    col_btn_a, col_btn_b = st.columns(2)
+    with col_btn_a:
+        botao_busca = st.button("Buscar")
+    with col_btn_b:
+        botao_resultados = st.button("Ganhadores")
 
-# Lógica de Busca e Exibição
-if botao_clicado:
+# --- LÓGICA 1: BOTÃO GANHADORES (1º e 2º) ---
+if botao_resultados:
+    st.markdown("### 🏆 Top 2 Liderança")
+    # Filtra os dois primeiros lugares
+    vencedores = [u for u in ranking_db if u['posicao'] in [1, 2]]
+    for v in vencedores:
+        cor = "#FFD700" if v['posicao'] == 1 else "#C0C0C0"
+        medalha = "🥇" if v['posicao'] == 1 else "🥈"
+        st.markdown(f"""
+            <div class="resultado-card" style="border-left: 8px solid {cor};">
+                <div class="podio-label" style="color: {cor};">{medalha} {v['posicao']}º LUGAR</div>
+                <p style="margin: 0; font-size: 18px;"><strong>{v['nome']}</strong></p>
+                <p style="margin: 0; color: #666; font-size: 14px;">CPF: {v['cpf']}</p>
+            </div>
+        """, unsafe_allow_html=True)
+    st.markdown("---")
+
+# --- LÓGICA 2: BUSCA INDIVIDUAL ---
+if botao_busca:
     if not nome_busca:
         st.warning("Por favor, digite um nome.")
     else:
