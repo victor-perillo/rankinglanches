@@ -239,7 +239,7 @@ ranking_db = [
     {'posicao': 165, 'nome': 'FABIO LUIZ PASCHOAL', 'cpf': '***.545.228-**'},
     {'posicao': 166, 'nome': 'LARISSA SOARES DA SILVA', 'cpf': '***.576.408-**'},
     {'posicao': 167, 'nome': 'PEDRO SILVA MARTINS', 'cpf': '***.245.268-**'},
-    {'posicao': 168, 'nome': 'SABRINA SANT ANA DA SILVA ALVES', '***.844.038-**'},
+    {'posicao': 168, 'nome': 'SABRINA SANT ANA DA SILVA ALVES', 'cpf': '***.844.038-**'},
     {'posicao': 169, 'nome': 'SANDRA MARIA DE SOUSA SALINAS', 'cpf': '***.148.401-**'}
 ]
 
@@ -247,9 +247,10 @@ ranking_db = [
 col1, col2, col3 = st.columns([1, 3, 1])
 with col2:
     try:
+        # Se você tiver a logo.jpg, ele exibe. Se não, exibe o texto abaixo.
         st.image("logo.jpg", use_container_width=True)
     except:
-        st.info("Logo da Promoção")
+        st.markdown("<h1 style='text-align: center;'>🍔 Promoção</h1>", unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align: center; color: #333; margin-bottom: 25px;'>Consulta de Ranking</h2>", unsafe_allow_html=True)
 
@@ -268,7 +269,6 @@ with c2:
 # --- LÓGICA 1: BOTÃO GANHADORES (1º e 2º) ---
 if botao_resultados:
     st.markdown("### 🏆 Top 2 Liderança")
-    # Filtra os dois primeiros lugares
     vencedores = [u for u in ranking_db if u['posicao'] in [1, 2]]
     for v in vencedores:
         cor = "#FFD700" if v['posicao'] == 1 else "#C0C0C0"
@@ -288,7 +288,6 @@ if botao_busca:
         st.warning("Por favor, digite um nome.")
     else:
         resultados = [u for u in ranking_db if nome_busca.lower() in u['nome'].lower()]
-        
         if resultados:
             for p in resultados:
                 st.markdown(f"""
