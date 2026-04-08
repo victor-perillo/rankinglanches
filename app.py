@@ -177,10 +177,7 @@ c_btn1, c_btn2, c_btn3 = st.columns(3)
 
 with c_btn1:
     botao_busca = st.button("Buscar")
-with c_btn2:
-    botao_ganhadores = st.button("Ganhadores")
-with c_btn3:
-    botao_video = st.button("Vídeo Sorteio")
+
 
 # --- LÓGICA 1: BUSCA ---
 if botao_busca:
