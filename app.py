@@ -235,7 +235,7 @@ if botao_busca:
 # 5. Rodapé
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 07/04/2026/03/2026<br>
+        Atualizado em 10/04/2026/03/2026<br>
         <strong>Promoção válida até 30/04/2026</strong>
     </div>
 """, unsafe_allow_html=True)
