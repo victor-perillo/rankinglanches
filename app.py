@@ -10,7 +10,7 @@ st.set_page_config(
 
 # 2. Estilização Customizada (CSS)
 st.markdown("""
-    <style>
+<style>
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
@@ -22,29 +22,28 @@ st.markdown("""
     }
 
     /* Centraliza o contêiner do botão */
-    .stButton {
+    div.stButton {
         display: flex;
         justify-content: center;
         width: 100%;
     }
     
     /* Estilização do Botão de Buscar */
-    .stButton>button {
-        background-color: #8A05BE;
-        color: white;
-        border-radius: 12px;
-        width: 80%;         /* Aumenta a largura lateral */
-        height: 55px;       /* Aumenta a altura */
-        font-weight: bold;
-        font-size: 18px;    /* Aumenta a fonte */
-        border: none;
-        transition: 0.3s ease;
-        margin-top: 20px;
+    div.stButton > button {
+        background-color: #8A05BE !important;
+        color: white !important;
+        border-radius: 12px !important;
+        width: 80% !important;
+        height: 55px !important;
+        font-weight: bold !important;
+        font-size: 18px !important;
+        border: none !important;
+        margin-top: 20px !important;
     }
 
-    .stButton>button:hover {
-        background-color: #700499;
-        color: white;
+    div.stButton > button:hover {
+        background-color: #700499 !important;
+        color: white !important;
     }
     
     .resultado-card {
@@ -71,7 +70,7 @@ st.markdown("""
         border-top: 1px solid #eee;
         padding-top: 20px;
     }
-    </style>
+</style>
 """, unsafe_allow_html=True)
 
 .stButton>button {
