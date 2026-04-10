@@ -27,12 +27,12 @@ st.markdown("""
         color: white;
         border-radius: 12px;
         width: 100%;
-        height: 45px;
+        height: 60px;
         padding: 0px;
         font-weight: bold;
         border: none;
         transition: 0.3s ease;
-        font-size: 14px;
+        font-size: 20px;
         margin-top: 5px;
     }
     .stButton>button:hover {
@@ -236,7 +236,7 @@ if botao_busca:
 # 5. Rodapé
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 10/04/2026/03/2026<br>
+        Atualizado em 10/04/2026<br>
         <strong>Promoção válida até 30/04/2026</strong>
     </div>
 """, unsafe_allow_html=True)
