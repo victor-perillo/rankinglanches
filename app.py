@@ -9,14 +9,70 @@ st.set_page_config(
 )
 
 # 2. Estilização Customizada (CSS)
-s/* No seu código, altere este bloco específico dentro da tag <style> */
+st.markdown("""
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    
+    .block-container {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        max-width: 450px;
+    }
 
-#/* Caracteristicas do botão
-.stButton {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
+    /* Centraliza o contêiner do botão */
+    .stButton {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    /* Estilização do Botão de Buscar */
+    .stButton>button {
+        background-color: #8A05BE;
+        color: white;
+        border-radius: 12px;
+        width: 80%;         /* Aumenta a largura lateral */
+        height: 55px;       /* Aumenta a altura */
+        font-weight: bold;
+        font-size: 18px;    /* Aumenta a fonte */
+        border: none;
+        transition: 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .stButton>button:hover {
+        background-color: #700499;
+        color: white;
+    }
+    
+    .resultado-card {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 15px;
+        border: 1px solid #e0e0e0;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        color: #333;
+    }
+    
+    .destaque {
+        color: #8A05BE;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .footer-text {
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 .stButton>button {
     background-color: #8A05BE;
