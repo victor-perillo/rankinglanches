@@ -208,7 +208,7 @@ st.markdown("<h2 style='text-align: center; color: #333;'>Consulta de Ranking</h
 nome_busca = st.text_input("", placeholder="Insira seu nome completo...")
 
 # Linha de botões padronizada
-c_btn1, c_btn2, c_btn3 = st.columns(3)
+c_btn1, c_btn2, c_btn3 = st.columns([0.5, 2, 0.5])
 
 with c_btn2:
     botao_busca = st.button("Buscar")
