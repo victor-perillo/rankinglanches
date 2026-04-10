@@ -9,17 +9,29 @@ st.set_page_config(
 )
 
 # 2. Estilização Customizada (CSS)
-st.markdown("""
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    
-    .block-container {
-        padding-top: 1rem;
-        padding-bottom: 2rem;
-        max-width: 450px;
-    }
+s/* No seu código, altere este bloco específico dentro da tag <style> */
+
+#/* Caracteristicas do botão
+.stButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.stButton>button {
+    background-color: #8A05BE;
+    color: white;
+    border-radius: 12px;
+    width: 60%;         /* DEFINE A LARGURA (ex: 60% da tela) */
+    min-width: 200px;  /* Garante uma largura mínima */
+    height: 55px;       /* Mantém uma boa altura */
+    padding: 0px;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s ease;
+    font-size: 18px;    /* Aumenta a fonte para combinar */
+    margin: 20px auto;  /* Espaço em cima e centraliza */
+}
     
     /* Padronização dos Botões */
     .stButton>button {
