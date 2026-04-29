@@ -248,6 +248,7 @@ ranking_db = [
     {'posicao': 171, 'nome': 'RICARDO DOS SANTOS ALENCAR', 'cpf': '***.969.878-**'},
     {'posicao': 172, 'nome': 'PRISCILA S K CORREA', 'cpf': '***.553.718-**'},
     {'posicao': 173, 'nome': 'LUIZ ANTONIO PANTOJO JUNIOR', 'cpf': '***.393.588-**'}
+    ]
 # 4. Interface
 col1, col2, col3 = st.columns([1, 3, 1])
 with col2:
