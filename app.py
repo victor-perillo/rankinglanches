@@ -21,14 +21,14 @@ st.markdown("""
         max-width: 450px;
     }
 
-    /* Centraliza o contêiner do botão */
+    /* Centraliza e padroniza botões */
     div.stButton {
         display: flex;
         justify-content: center;
         width: 100%;
     }
     
-    /* Estilização do Botão de Buscar - GRANDE E DISTRIBUÍDO */
+    /* Botão de Buscar (Roxo Principal) */
     div.stButton > button {
         background-color: #8A05BE !important;
         color: white !important;
@@ -47,6 +47,13 @@ st.markdown("""
         color: white !important;
     }
     
+    /* Botões secundários (Resultado e Sorteio) */
+    .stColumn div.stButton > button {
+        height: 45px !important;
+        font-size: 16px !important;
+        margin-top: 0px !important;
+    }
+
     .resultado-card {
         background-color: #ffffff;
         padding: 15px;
@@ -264,6 +271,7 @@ ranking_db = [
     {'posicao': 187, 'nome': 'PRISCILA S K CORREA', 'cpf': '***.553.718-**'},
     {'posicao': 188, 'nome': 'LUIZ ANTONIO PANTOJO JUNIOR', 'cpf': '***.393.588-**'}
 ]
+
 # 4. Interface
 col1, col2, col3 = st.columns([1, 3, 1])
 with col2:
@@ -277,8 +285,8 @@ st.markdown("<h2 style='text-align: center; color: #333;'>Consulta de Ranking</h
 # Input de busca
 nome_busca = st.text_input("", placeholder="Insira seu nome completo...")
 
-# Botão centralizado e distribuído conforme o novo CSS
-c_btn1, c_btn2, c_btn3 = st.columns([0.2, 2.6, 0.2])
+# Botão centralizado Buscar
+c_btn1, c_btn2, c_btn3 = st.columns([0.1, 2.8, 0.1])
 with c_btn2:
     botao_busca = st.button("Buscar")
 
@@ -300,34 +308,35 @@ if botao_busca:
         else:
             st.error("Nome não encontrado.")
 
-# --- LÓGICA 2: RESULTADO E SORTEIO ---
-st.markdown("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
+# --- LÓGICA 2: RESULTADO E SORTEIO (LADO A LADO) ---
+# Usando colunas com gaps menores para melhor centralização
 col_res, col_sort = st.columns(2)
 
 with col_res:
     if st.button("Resultado"):
-        st.markdown("### 🏆 Top 2")
-        # Filtra apenas o primeiro e segundo lugar do banco
+        st.markdown("<h3 style='text-align: center;'>🏆 Top 2</h3>", unsafe_allow_html=True)
         top_2 = [u for u in ranking_db if u['posicao'] in [1, 2]]
         for p in top_2:
             st.markdown(f"""
-                <div class="resultado-card">
+                <div class="resultado-card" style="text-align: center;">
                     <p style="margin: 0;"><strong>{p['posicao']}º - {p['nome']}</strong></p>
                 </div>
             """, unsafe_allow_html=True)
 
 with col_sort:
     if st.button("Sorteio"):
-        st.info("Assista ao vídeo do sorteio abaixo:")
-        # Substitua a URL abaixo pelo link do seu vídeo (YouTube, Vimeo ou arquivo local)
-        # st.video("https://www.youtube.com/watch?v=exemplo")
-        st.write("📽️ [Link do vídeo do sorteio]")
+        # URL Raw do seu GitHub (Substitua 'SEU_USUARIO' e 'SEU_REPO' se necessário)
+        # Se o repo for privado, você precisará de um token ou hospedar em lugar público
+        video_url = "https://raw.githubusercontent.com/VictorPerillo/Bomlixo_app/main/sorteio.mp4"
+        st.markdown("<p style='text-align: center; font-weight: bold;'>🎥 Vídeo do Sorteio</p>", unsafe_allow_html=True)
+        st.video(video_url)
 
 # 5. Rodapé
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 27/04/2026<br>
-        <strong>Promoção válida até 30/04/2026</strong>
+        Atualizado em 04/05/2026<br>
+        <strong>Promoção válida até 30/05/2026</strong>
     </div>
 """, unsafe_allow_html=True)
