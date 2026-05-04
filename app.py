@@ -21,14 +21,12 @@ st.markdown("""
         max-width: 450px;
     }
 
-    /* Centraliza o contêiner do botão */
     div.stButton {
         display: flex;
         justify-content: center;
         width: 100%;
     }
     
-    /* Estilização do Botão de Buscar */
     div.stButton > button {
         background-color: #8A05BE !important;
         color: white !important;
@@ -47,7 +45,6 @@ st.markdown("""
         color: white !important;
     }
     
-    /* Estilização para botões secundários lado a lado */
     .stColumn div.stButton > button {
         height: 45px !important;
         font-size: 16px !important;
@@ -81,7 +78,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 3. Banco de Dados (Mantendo todos os registros)
+# 3. Banco de Dados (CORRIGIDO)
 ranking_db = [
     {'posicao': 1, 'nome': 'WALDEMAR FAUSTINO DE SOUZA FILHO', 'cpf': '***.457.518-**'},
     {'posicao': 2, 'nome': 'DIEGO APARECIDO CARVALHO ALBUQUERQUE', 'cpf': '***.590.618-**'},
@@ -253,7 +250,7 @@ ranking_db = [
     {'posicao': 168, 'nome': 'PAULO VITOR LEMES', 'cpf': '***.781.688-**'},
     {'posicao': 169, 'nome': 'RAFAEL SARTORI DA COSTA', 'cpf': '***.841.938-**'},
     {'posicao': 170, 'nome': 'GUSTAVO DE CAMPOS ANTUNES', 'cpf': '***.326.288-**'},
-    {'posicao': 171, 'nome': 'LISANDRA FERNANDA DE GODOI', '***.048.668-**'},
+    {'posicao': 171, 'nome': 'LISANDRA FERNANDA DE GODOI', 'cpf': '***.048.668-**'},
     {'posicao': 172, 'nome': 'ESTEFANI MARQUES ROSA', 'cpf': '***.156.118-**'},
     {'posicao': 173, 'nome': 'PAULO CESAR PONTES DE OLIVEIRA', 'cpf': '***.360.198-**'},
     {'posicao': 174, 'nome': 'MATEUS SILVA DALMARCO', 'cpf': '***.839.838-**'},
@@ -310,7 +307,7 @@ if botao_busca:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# --- BOTÕES SECUNDÁRIOS: RESULTADO E SORTEIO ---
+# --- BOTÕES SECUNDÁRIOS ---
 col_res, col_sort = st.columns(2)
 
 with col_res:
@@ -326,15 +323,12 @@ with col_res:
 
 with col_sort:
     if st.button("Sorteio"):
-        # Link RAW definitivo do GitHub
         video_url = "https://raw.githubusercontent.com/victor-perillo/rankinglanches/main/sorteio.mp4"
         st.markdown("<p style='text-align: center; font-weight: bold;'>🎥 Vídeo do Sorteio</p>", unsafe_allow_html=True)
-        
-        # Exibição do vídeo
         st.video(video_url)
 
 # 5. Rodapé
-st.markdown(f"""
+st.markdown("""
     <div class="footer-text">
         Atualizado em 04/05/2026<br>
         <strong>Promoção válida até 30/05/2026</strong>
