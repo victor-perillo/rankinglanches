@@ -352,6 +352,6 @@ with col_sort:
 st.markdown("""
     <div class="footer-text">
         Atualizado em 04/05/2026<br>
-        <strong>Promoção válida até 30/05/2026</strong>
+        <strong>Promoção Finalizada</strong>
     </div>
 """, unsafe_allow_html=True)
