@@ -60,6 +60,16 @@ st.markdown("""
         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         color: #333;
     }
+
+    .vencedor-card {
+        background-color: #FFF9C4;
+        padding: 15px;
+        border-radius: 15px;
+        border: 2px solid #FFD700;
+        margin-bottom: 15px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(255,215,0,0.2);
+    }
     
     .destaque {
         color: #8A05BE;
@@ -78,7 +88,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 3. Banco de Dados (CORRIGIDO)
+# 3. Banco de Dados
 ranking_db = [
     {'posicao': 1, 'nome': 'WALDEMAR FAUSTINO DE SOUZA FILHO', 'cpf': '***.457.518-**'},
     {'posicao': 2, 'nome': 'DIEGO APARECIDO CARVALHO ALBUQUERQUE', 'cpf': '***.590.618-**'},
@@ -279,15 +289,12 @@ with col2:
 
 st.markdown("<h2 style='text-align: center; color: #333;'>Consulta de Ranking</h2>", unsafe_allow_html=True)
 
-# Input de busca
 nome_busca = st.text_input("", placeholder="Insira seu nome completo...")
 
-# Botão Buscar
 c_btn1, c_btn2, c_btn3 = st.columns([0.1, 2.8, 0.1])
 with c_btn2:
     botao_busca = st.button("Buscar")
 
-# Lógica da Busca
 if botao_busca:
     if not nome_busca:
         st.warning("Por favor, digite um nome.")
@@ -323,9 +330,23 @@ with col_res:
 
 with col_sort:
     if st.button("Sorteio"):
-        video_url = "https://raw.githubusercontent.com/victor-perillo/rankinglanches/main/sorteio.mp4"
-        st.markdown("<p style='text-align: center; font-weight: bold;'>🎥 Vídeo do Sorteio</p>", unsafe_allow_html=True)
-        st.video(video_url)
+        # CARD DO VENCEDOR
+        st.markdown("""
+            <div class="vencedor-card">
+                <h3 style="margin: 0; color: #333;">🎉 VENCEDOR(A)</h3>
+                <p style="margin: 5px 0; font-size: 18px;"><strong>THEO MARCHETTI BARCELOS</strong></p>
+                <p style="margin: 0; font-size: 14px; color: #666;">🆔 CPF: •••.507.218-••</p>
+                <p style="margin: 5px 0 0 0; font-size: 12px; font-weight: bold; color: #8A05BE;">GANHADOR(A) DO SORTEIO</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+        # VÍDEO DO SORTEIO
+        try:
+            with open("sorteio.mp4", "rb") as v:
+                st.video(v.read())
+        except:
+            st.warning("Assista ao vídeo no link abaixo:")
+            st.markdown("[🎥 Link do vídeo no GitHub](https://github.com/victor-perillo/rankinglanches/blob/main/sorteio.mp4)")
 
 # 5. Rodapé
 st.markdown("""
