@@ -138,7 +138,7 @@ ranking_db = [
     {'posicao': 46, 'nome': 'THIAGO CICONELLO GIOVANETTI', 'cpf': '***.705.048-**'},
     {'posicao': 47, 'nome': 'CAIQUE ALEXANDRE DE OLIVEIRA', 'cpf': '***.362.908-**'},
     {'posicao': 48, 'nome': 'PRISCILA NORONHA MENDES', 'cpf': '***.687.188-**'},
-    {'posicao': 49, 'nome': 'GUILHERME OTO VENTURELLI', 'cpf': '***.979.058-**'},
+    {'posicao': 49, 'nome': 'GUILHERRE OTO VENTURELLI', 'cpf': '***.979.058-**'},
     {'posicao': 50, 'nome': 'JACKSON HEBERT SANTOS', 'cpf': '***.868.628-**'},
     {'posicao': 51, 'nome': 'DANIELA DE CASTRO MORAES', 'cpf': '***.645.658-**'},
     {'posicao': 52, 'nome': 'THAFARO WESLLEY NOGUEIRA PAES', 'cpf': '***.955.418-**'},
@@ -275,46 +275,10 @@ if botao_busca:
         else:
             st.error("Nome não encontrado.")
 
-st.markdown("<br>", unsafe_allow_html=True)
-
-# --- BOTÕES SECUNDÁRIOS ---
-col_res, col_sort = st.columns(2)
-
-with col_res:
-    if st.button("Resultado"):
-        st.markdown("<h3 style='text-align: center;'>🏆 Top 2</h3>", unsafe_allow_html=True)
-        top_2 = [u for u in ranking_db if u['posicao'] in [1, 2]]
-        for p in top_2:
-            st.markdown(f"""
-                <div class="resultado-card" style="text-align: center;">
-                    <p style="margin: 0;"><strong>{p['posicao']}º - {p['nome']}</strong></p>
-                </div>
-            """, unsafe_allow_html=True)
-
-with col_sort:
-    if st.button("Sorteio"):
-        # CARD DO VENCEDOR
-        st.markdown("""
-            <div class="vencedor-card">
-                <h3 style="margin: 0; color: #333;">🎉 VENCEDOR(A)</h3>
-                <p style="margin: 5px 0; font-size: 18px;"><strong>THEO MARCHETTI BARCELOS</strong></p>
-                <p style="margin: 0; font-size: 14px; color: #666;">🆔 CPF: •••.507.218-••</p>
-                <p style="margin: 5px 0 0 0; font-size: 12px; font-weight: bold; color: #8A05BE;">GANHADOR(A) DO SORTEIO</p>
-            </div>
-        """, unsafe_allow_html=True)
-
-        # VÍDEO DO SORTEIO
-        try:
-            with open("sorteio.mp4", "rb") as v:
-                st.video(v.read())
-        except:
-            st.warning("Assista ao vídeo no link abaixo:")
-            st.markdown("[🎥 Link do vídeo no GitHub](https://github.com/victor-perillo/rankinglanches/blob/main/sorteio.mp4)")
-
 # 5. Rodapé
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 04/05/2026<br>
-        <strong>Promoção Finalizada</strong>
+        Atualizado em 19/05/2026<br>
+        <strong>Promoção válida até 29/05/26 </strong>
     </div>
 """, unsafe_allow_html=True)
