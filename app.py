@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+import glob
 
 # 1. Configuração da página
 st.set_page_config(
@@ -333,6 +335,63 @@ if botao_busca:
                 """, unsafe_allow_html=True)
         else:
             st.error("Nome não encontrado.")
+
+# 6. Botões de destaque: 1º Lugar, 2º Lugar e Sorteio (vídeo)
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: #333;'>Destaques</h3>", unsafe_allow_html=True)
+
+btn_col1, btn_col2, btn_col3 = st.columns([1,1,1])
+
+with btn_col1:
+    if st.button("1º Lugar"):
+        primeiro = next((u for u in ranking_db if u['posicao'] == 1), None)
+        if primeiro:
+            st.markdown(f"""
+                <div class="vencedor-card">
+                    <div style='font-size:22px; color:#8A05BE; font-weight:700;'>🏆 1º Lugar</div>
+                    <div style='margin-top:8px; font-size:18px; color:#333;'><strong>{primeiro['nome']}</strong></div>
+                    <div style='margin-top:6px; font-size:14px; color:#666;'>CPF: <strong>{primeiro['cpf']}</strong></div>
+                    <div style='margin-top:6px; font-size:14px; color:#666;'>Posição: <span class="destaque">{primeiro['posicao']}º lugar</span></div>
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.info("Ainda não há 1º lugar definido.")
+
+with btn_col2:
+    if st.button("2º Lugar"):
+        segundo = next((u for u in ranking_db if u['posicao'] == 2), None)
+        if segundo:
+            st.markdown(f"""
+                <div class="vencedor-card" style='background-color:#E3F2FD; border-color:#64B5F6;'>
+                    <div style='font-size:20px; color:#0277BD; font-weight:700;'>🥈 2º Lugar</div>
+                    <div style='margin-top:8px; font-size:16px; color:#333;'><strong>{segundo['nome']}</strong></div>
+                    <div style='margin-top:6px; font-size:14px; color:#666;'>CPF: <strong>{segundo['cpf']}</strong></div>
+                    <div style='margin-top:6px; font-size:14px; color:#666;'>Posição: <span class="destaque">{segundo['posicao']}º lugar</span></div>
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.info("Ainda não há 2º lugar definido.")
+
+with btn_col3:
+    if st.button("Sorteio"):
+        # Procura por arquivos .mp4 na pasta do app e reproduz o primeiro encontrado
+        mp4_files = glob.glob("*.mp4")
+        preferred = "sorteio.mp4"
+        video_to_play = None
+        if preferred in mp4_files:
+            video_to_play = preferred
+        elif mp4_files:
+            # ordena para estabilidade e escolhe o primeiro
+            mp4_files.sort()
+            video_to_play = mp4_files[0]
+
+        if video_to_play:
+            try:
+                st.video(video_to_play)
+            except Exception:
+                st.error(f"Erro ao reproduzir o vídeo '{video_to_play}'.")
+        else:
+            st.info("Nenhum arquivo MP4 encontrado no diretório do app. Faça upload de 'sorteio.mp4' ou adicione um .mp4.")
 
 # 5. Rodapé
 st.markdown("""
