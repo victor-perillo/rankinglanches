@@ -393,6 +393,15 @@ with btn_col3:
         else:
             st.info("Nenhum arquivo MP4 encontrado no diretório do app. Faça upload de 'sorteio.mp4' ou adicione um .mp4.")
 
+        # Card do ganhador do sorteio (exibe sempre ao clicar em Sorteio)
+        st.markdown(f"""
+            <div class="vencedor-card" style='background: linear-gradient(90deg,#fff3e0,#fff9c4); border-color:#FFB300;'>
+                <div style='font-size:20px; font-weight:700;'>🎉 Ganhador do Sorteio</div>
+                <div style='margin-top:8px; font-size:18px; color:#333;'><strong>VICTOR LOPES MARINS</strong></div>
+                <div style='margin-top:6px; font-size:14px; color:#666;'>CPF: <strong>•••.953.868-••</strong></div>
+            </div>
+        """, unsafe_allow_html=True)
+
 # 5. Rodapé
 st.markdown("""
     <div class="footer-text">
