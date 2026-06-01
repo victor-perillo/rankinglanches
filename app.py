@@ -315,7 +315,8 @@ st.markdown("<h2 style='text-align: center; color: #333;'>Consulta de Ranking</h
 
 nome_busca = st.text_input("", placeholder="Insira seu nome completo...")
 
-c_btn1, c_btn2, c_btn3 = st.columns([0.1, 2.8, 0.1])
+# Centraliza o botão de busca na mesma coluna do 2º lugar
+c_btn1, c_btn2, c_btn3 = st.columns([1,1,1])
 with c_btn2:
     botao_busca = st.button("Buscar")
 
@@ -405,7 +406,7 @@ with btn_col3:
 # 5. Rodapé
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 01/06/2026<br>
-        <strong>Promoção finalizada </strong>
+        Atualizado em 28/05/2026<br>
+        <strong>Promoção válida até 29/05/26 </strong>
     </div>
 """, unsafe_allow_html=True)
