@@ -405,7 +405,7 @@ with btn_col3:
 # 5. Rodapé
 st.markdown("""
     <div class="footer-text">
-        Atualizado em 28/05/2026<br>
-        <strong>Promoção válida até 29/05/26 </strong>
+        Atualizado em 01/06/2026<br>
+        <strong>Promoção finalizada </strong>
     </div>
 """, unsafe_allow_html=True)
