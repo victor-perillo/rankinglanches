@@ -441,8 +441,8 @@ with btn_col3:
         st.markdown(f"""
             <div class="vencedor-card" style='background: linear-gradient(90deg,#fff3e0,#fff9c4); border-color:#FFB300;'>
                 <div style='font-size:20px; font-weight:700;'>🎉 Ganhador do Sorteio</div>
-                <div style='margin-top:8px; font-size:18px; color:#333;'><strong>VICTOR LOPES MARINS</strong></div>
-                <div style='margin-top:6px; font-size:14px; color:#666;'>CPF: <strong>•••.953.868-••</strong></div>
+                <div style='margin-top:8px; font-size:18px; color:#333;'><strong>FABIO LUIZ DE FRANCA FILHO</strong></div>
+                <div style='margin-top:6px; font-size:14px; color:#666;'>CPF: <strong>•••.724.428-••</strong></div>
             </div>
         """, unsafe_allow_html=True)
 
